@@ -33,8 +33,10 @@ public class SortTest {
         pSort=new Bubble();
     }
 
+
+
     @After
-    public void afterTest() {
+    public void after() {
         int length = 10000;
         int[] array = ArrayUtils.getArray(length);
         long beginTime = System.currentTimeMillis();

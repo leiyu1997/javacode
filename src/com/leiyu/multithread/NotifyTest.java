@@ -1,6 +1,7 @@
 package com.leiyu.multithread;
 
 /**
+ * 等待/通知的实现
  * 实现线程的交替打印
  */
 public class NotifyTest {
