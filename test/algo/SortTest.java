@@ -1,12 +1,11 @@
 package algo;
 
-import com.leiyu.algo.sort.sorts.Bubble;
-import com.leiyu.algo.sort.sorts.Insertion;
-import com.leiyu.algo.sort.sorts.ParentSort;
-import com.leiyu.algo.sort.sorts.Selection;
+import com.leiyu.algo.sort.sorts.*;
 import com.leiyu.algo.sort.utils.ArrayUtils;
 import org.junit.After;
 import org.junit.Test;
+
+import java.util.Arrays;
 
 /**
  * 排序算法测试类
@@ -28,20 +27,25 @@ public class SortTest {
     }
 
     @Test
-    public void BubbleTest(){
+    public void BubbleTest() {
         //冒泡排序
-        pSort=new Bubble();
+        pSort = new Bubble();
     }
 
+    @Test
+    public void HeapTest() {
+        pSort = new Heap();
+    }
 
 
     @After
     public void after() {
-        int length = 10000;
+        int length = 20;
         int[] array = ArrayUtils.getArray(length);
         long beginTime = System.currentTimeMillis();
         pSort.sort(array);
         long time = System.currentTimeMillis() - beginTime;
+        System.out.println("结果：" + Arrays.toString(array));
         System.out.println("排序是否成功：" + ArrayUtils.isSort(array));
         System.out.println("排序消耗时间：" + time + "ms");
     }
