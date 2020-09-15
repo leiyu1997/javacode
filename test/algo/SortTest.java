@@ -3,6 +3,7 @@ package algo;
 import com.leiyu.algo.sort.sorts.*;
 import com.leiyu.algo.sort.utils.ArrayUtils;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -12,36 +13,36 @@ import java.util.Arrays;
  */
 public class SortTest {
 
-    private ParentSort pSort;
+    ParentSort pSort;
+    int[] array;
 
-    @Test
+    @Before
+    public void before() {
+        int length = 10000;
+        array = ArrayUtils.getArray(length);
+    }
+
+    @Test//选择排序测试
     public void selectionTest() {
-        //选择排序测试
         pSort = new Selection();
     }
-
-    @Test
+    @Test//插入排序测试
     public void insertionTest() {
-        //插入排序测试
         pSort = new Insertion();
     }
-
-    @Test
+    @Test//冒泡排序
     public void BubbleTest() {
-        //冒泡排序
         pSort = new Bubble();
     }
-
     @Test
     public void HeapTest() {
+        array = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
         pSort = new Heap();
     }
 
 
     @After
     public void after() {
-        int length = 20;
-        int[] array = ArrayUtils.getArray(length);
         long beginTime = System.currentTimeMillis();
         pSort.sort(array);
         long time = System.currentTimeMillis() - beginTime;

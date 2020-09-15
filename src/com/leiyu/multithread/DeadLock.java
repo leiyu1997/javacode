@@ -17,6 +17,7 @@ public class DeadLock {
 }
 
 class DeadLockRun1 implements Runnable {
+    @Override
     public void run() {
         synchronized (DeadLock.A) {
             System.out.println(Thread.currentThread().getName() + "获取到" + DeadLock.A);
@@ -34,6 +35,7 @@ class DeadLockRun1 implements Runnable {
 }
 
 class DeadLockRun2 implements Runnable {
+    @Override
     public void run() {
         synchronized (DeadLock.B) {
             System.out.println(Thread.currentThread().getName() + "获取到" + DeadLock.B);
