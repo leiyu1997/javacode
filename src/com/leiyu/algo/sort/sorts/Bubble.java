@@ -16,4 +16,9 @@ public class Bubble extends ParentSort {
             }
         }
     }
+
+    @Override
+    public String getName() {
+        return "冒泡排序";
+    }
 }

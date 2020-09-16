@@ -1,7 +1,5 @@
 package com.leiyu.algo.sort.sorts;
 
-import java.util.Arrays;
-
 /**
  * 堆排序
  */
@@ -9,16 +7,14 @@ public class Heap extends ParentSort {
     @Override
     public void sort(int[] array) {
         int n = array.length;
-        build(array, n);
-        for (; n > 1; n--) {
+        //构建大顶堆(由最后的非叶子节点开始向上遍历)
+        for (int i = (n - 2) / 2; i >= 0; i--) {
+            sink(array, i, n);
+        }
+        //排序(堆顶与末尾交换)
+        for (; n > 0; n--) {
             exch(array, 0, n - 1);
             sink(array, 0, n - 1);
-        }
-    }
-
-    private void build(int[] array, int n) {
-        for (int i = 0; i <= (n - 1) / 2; i++) {
-            sink(array, i, n);
         }
     }
 
@@ -28,7 +24,12 @@ public class Heap extends ParentSort {
         if (r < n && array[r] > array[l]) l++;
         if (l < n && array[l] > array[k]) {
             exch(array, k, l);
-            sink(array, Math.max((k - 1) / 2, 0), n);
+            sink(array, l, n);
         }
+    }
+
+    @Override
+    public String getName() {
+        return "堆排序";
     }
 }

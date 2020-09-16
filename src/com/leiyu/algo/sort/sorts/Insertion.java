@@ -14,4 +14,9 @@ public class Insertion extends ParentSort {
             }
         }
     }
+
+    @Override
+    public String getName() {
+        return "插入排序";
+    }
 }

@@ -20,4 +20,9 @@ public class Selection extends ParentSort {
             exch(array, min, i);
         }
     }
+
+    @Override
+    public String getName() {
+        return "选择排序";
+    }
 }
