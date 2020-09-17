@@ -6,6 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 /**
  * 排序算法测试类
  */
@@ -16,7 +18,7 @@ public class SortTest {
 
     @Before
     public void before() {
-        int length = 10000;
+        int length = 100;
         array = ArrayUtils.getArray(length);
     }
 
@@ -36,22 +38,26 @@ public class SortTest {
     }
 
     @Test//冒泡排序
-    public void BubbleTest() {
+    public void bubbleTest() {
         pSort = new Bubble();
     }
 
     @Test//堆排序
-    public void HeapTest() {
+    public void heapTest() {
         pSort = new Heap();
     }
 
+    @Test
+    public void quickTest() {
+        pSort = new Quick();
+    }
 
     @After
     public void after() {
         long beginTime = System.currentTimeMillis();
         pSort.sort(array);
         long time = System.currentTimeMillis() - beginTime;
-//        System.out.println(pSort.getName() + "results:" + Arrays.toString(array));
+        System.out.println(pSort.getName() + "results:" + Arrays.toString(array));
         System.out.println(String.format("%s\tisSuccess:%b,\ttime(ms): %d", pSort.getName(), ArrayUtils.isSort(array), time));
     }
 }
