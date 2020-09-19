@@ -38,7 +38,7 @@ public class Quick extends ParentSort {
                     j--;
                 }
             }
-            x = array[i];
+            array[i] = x;
             quickSort(array, l, i - 1);
             quickSort(array, i + 1, r);
         }

@@ -18,7 +18,7 @@ public class SortTest {
 
     @Before
     public void before() {
-        int length = 100;
+        int length = 1000000;
         array = ArrayUtils.getArray(length);
     }
 
@@ -47,7 +47,7 @@ public class SortTest {
         pSort = new Heap();
     }
 
-    @Test
+    @Test//快速排序
     public void quickTest() {
         pSort = new Quick();
     }
@@ -57,7 +57,7 @@ public class SortTest {
         long beginTime = System.currentTimeMillis();
         pSort.sort(array);
         long time = System.currentTimeMillis() - beginTime;
-        System.out.println(pSort.getName() + "results:" + Arrays.toString(array));
+//        System.out.println(pSort.getName() + "results:" + Arrays.toString(array));
         System.out.println(String.format("%s\tisSuccess:%b,\ttime(ms): %d", pSort.getName(), ArrayUtils.isSort(array), time));
     }
 }
