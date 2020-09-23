@@ -1,7 +1,7 @@
 package com.leiyu.multithread;
 
 /**
- * java多线程的死锁实现
+ * java多线程的死锁实现（静态）
  */
 public class DeadLock {
 
