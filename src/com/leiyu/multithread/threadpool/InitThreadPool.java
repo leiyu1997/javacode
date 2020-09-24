@@ -25,7 +25,7 @@ public class InitThreadPool {
         try {
             System.out.println("main"+future.get());
         } catch (Exception e) {
-            throw new RuntimeException("asfasf");
+            throw new RuntimeException();
         }
         pool.execute(run);
         pool.submit(run);
