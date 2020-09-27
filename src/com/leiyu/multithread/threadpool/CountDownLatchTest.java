@@ -10,17 +10,17 @@ import java.util.concurrent.*;
  **/
 public class CountDownLatchTest {
     public static void main(String[] args) {
-        ThreadPoolExecutor pool=new ThreadPoolExecutor(2, 3, 1, TimeUnit.SECONDS, new ArrayBlockingQueue<>(3));
-        CountDownLatch count=new CountDownLatch(100);
+        ThreadPoolExecutor pool=new ThreadPoolExecutor(0, 4, 1, TimeUnit.SECONDS, new SynchronousQueue<>());
+        CountDownLatch count=new CountDownLatch(5);
         pool.execute(new CountDownLatchRun(count));
         pool.execute(new CountDownLatchRun(count));
         pool.execute(new CountDownLatchRun(count));
         pool.execute(new CountDownLatchRun(count));
         count.countDown();
         try {
-            Thread.sleep(200);
+            count.await();
         }catch (Exception e){
-
+            e.printStackTrace();
         }
         System.out.println("执行结束");
         pool.shutdown();
@@ -35,6 +35,11 @@ class CountDownLatchRun implements Runnable{
     @Override
     public void run() {
         count.countDown();
+        try {
+            count.await();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         System.out.println("线程执行");
     }
 }
