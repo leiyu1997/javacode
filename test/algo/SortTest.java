@@ -18,31 +18,31 @@ public class SortTest {
 
     @Test
     public void sort() {
-        int n = array.length;
-        for (int i = (n - 2) / 2; i >= 0; i--) {
+        int n = array.length - 1;
+        for (int i = (n - 1) / 2; i >= 0; i--) {
             sink(array, i, n);
         }
-        for (int i = n - 1; i >= 0; i--) {
-            int temp = array[i];
-            array[i] = array[0];
-            array[0] = temp;
-            sink(array, 0, i);
+
+        for (; n >= 0; ) {
+            int temp = array[0];
+            array[0] = array[n];
+            array[n] = temp;
+            sink(array, 0, --n);
         }
     }
 
-    void sink(int[] array, int h, int n) {
+    public void sink(int[] array, int h, int n) {
         int l = 2 * h + 1;
         int r = 2 * h + 2;
-        if (r < n && array[r] > array[l]) {
-            l++;
-        }
+        if (r < n && array[r] > array[l]) l++;
         if (l < n && array[l] > array[h]) {
-            int temp = array[l];
-            array[l] = array[h];
-            array[h] = temp;
+            int temp = array[h];
+            array[h] = array[l];
+            array[l] = temp;
             sink(array, l, n);
         }
     }
+
 
     @Before
     public void before() {
