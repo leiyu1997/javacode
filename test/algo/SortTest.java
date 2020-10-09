@@ -18,31 +18,35 @@ public class SortTest {
 
     @Test
     public void sort() {
-        int n = array.length;
-        for (int i = (n - 2) / 2; i >= 0; i--) {
-            sink(array, i, n);
-        }
-        for (int i = n - 1; i >= 0; i--) {
-            int temp = array[i];
-            array[i] = array[0];
-            array[0] = temp;
-            sink(array, 0, i);
+        quick(array, 0, array.length - 1);
+    }
+
+    void quick(int[] array, int l, int r) {
+        if (l < r && r < array.length) {
+            int i = l, j = r, x = array[i];
+            while (i < j) {
+                while (i < j && array[j] > x) {
+                    j--;
+                }
+                if (i < j) {
+                    array[i] = array[j];
+                    i++;
+                }
+
+                while (i < j && array[i] < x) {
+                    i++;
+                }
+                if (i < j) {
+                    array[j] = array[i];
+                    j--;
+                }
+            }
+            array[i] = x;
+            quick(array, l, i - 1);
+            quick(array, i + 1, r);
         }
     }
 
-    void sink(int[] array, int h, int n) {
-        int l = 2 * h + 1;
-        int r = 2 * h + 2;
-        if (r < n && array[r] > array[l]) {
-            l++;
-        }
-        if (l < n && array[l] > array[h]) {
-            int temp = array[l];
-            array[l] = array[h];
-            array[h] = temp;
-            sink(array, l, n);
-        }
-    }
 
     @Before
     public void before() {
