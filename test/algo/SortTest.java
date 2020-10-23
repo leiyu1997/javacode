@@ -18,32 +18,32 @@ public class SortTest {
 
     @Test
     public void sort() {
-        quick(array, 0, array.length - 1);
+        quickSort(array, 0, array.length - 1);
     }
 
-    void quick(int[] array, int l, int r) {
-        if (l < r && r < array.length) {
-            int i = l, j = r, x = array[i];
-            while (i < j) {
-                while (i < j && array[j] > x) {
-                    j--;
+    public void quickSort(int[] array, int l, int r) {
+        if (l < r) {
+            int m = l, n = r, x = array[l];
+            while (m < n) {
+                while (array[n] > x) {
+                    n--;
                 }
-                if (i < j) {
-                    array[i] = array[j];
-                    i++;
+                if (m < n) {
+                    array[m] = array[n];
+                    m++;
                 }
 
-                while (i < j && array[i] < x) {
-                    i++;
+                while (array[m] < x) {
+                    m++;
                 }
-                if (i < j) {
-                    array[j] = array[i];
-                    j--;
+                if (m < n) {
+                    array[n] = array[m];
+                    n--;
                 }
             }
-            array[i] = x;
-            quick(array, l, i - 1);
-            quick(array, i + 1, r);
+            array[m] = x;
+            quickSort(array, l, m - 1);
+            quickSort(array, m + 1, r);
         }
     }
 
