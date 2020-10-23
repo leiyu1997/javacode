@@ -18,32 +18,26 @@ public class SortTest {
 
     @Test
     public void sort() {
-        quickSort(array, 0, array.length - 1);
+        for (int i = (array.length - 2) / 2; i >= 0; i--) {
+            sink(array, i, array.length);
+        }
+        for (int i = array.length - 1; i > 0; i--) {
+            int temp = array[i];
+            array[i] = array[0];
+            array[0] = temp;
+            sink(array, 0, i);
+        }
     }
 
-    public void quickSort(int[] array, int l, int r) {
-        if (l < r) {
-            int m = l, n = r, x = array[l];
-            while (m < n) {
-                while (array[n] > x) {
-                    n--;
-                }
-                if (m < n) {
-                    array[m] = array[n];
-                    m++;
-                }
-
-                while (array[m] < x) {
-                    m++;
-                }
-                if (m < n) {
-                    array[n] = array[m];
-                    n--;
-                }
-            }
-            array[m] = x;
-            quickSort(array, l, m - 1);
-            quickSort(array, m + 1, r);
+    public void sink(int[] array, int k, int n) {
+        int l = 2 * k + 1;
+        int r = 2 * k + 2;
+        if (r < n && array[r] > array[l]) l++;
+        if (l < n && array[l] > array[k]) {
+            int temp = array[k];
+            array[k] = array[l];
+            array[l] = temp;
+            sink(array, l, n);
         }
     }
 
